@@ -3,6 +3,7 @@ import requests
 import json
 from multiprocessing import Pool
 import argparse
+from bs4 import BeautifulSoup
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
@@ -20,6 +21,7 @@ github_repo = None
 bukkit_repo = None
 spigot_base_url = None
 spigot_repo = None
+essentialsx_repo = None
 download_url_list = []
 filename_list = []
 
@@ -27,20 +29,21 @@ filename_list = []
 if os.path.exists("config.json"):
     with open("config.json", "r") as config_file:
         data = json.load(config_file)
-        EssentialsX_plugins["EssentialsX"] = data["essentials"]
+        EssentialsX_plugins["EssentialsX"] = data["essentials_base_url"]
         github_repo = data["github"]
         bukkit_base_url = data["bukkit_base_url"]
         bukkit_repo = data["bukkit"]
         spigot_base_url = data["spigot_base_url"]
         spigot_repo = data["spigot"]
+        essentialsx_repo = data["essentials"]
 else:
     with open("config.json", "a"):
         pass
-    
+
 if os.path.exists("plugins"):
     pass
 else:
-    os.mkdir('plugins')
+    os.mkdir("plugins")
 
 
 def download_file(url, custom_filename=None):
@@ -78,11 +81,24 @@ def parse_args():
     return parser.parse_args()
 
 
-# 
+#
 if __name__ == "__main__":
     args = parse_args()
 
-    # Download from Github 
+    # Download from essentialsX=================
+    response = requests.get(EssentialsX_plugins["EssentialsX"], headers=headers)
+    EssentialsX_plugins_url = json.loads(response.text)["url"]
+    soup = BeautifulSoup(response.content, "html.parser")
+    print(json.loads(response.text)["artifacts"])
+    for item in json.loads(response.text)["artifacts"]:
+        for index in essentialsx_repo:
+            if index in item["fileName"]:
+                download_url_list.append(
+                    EssentialsX_plugins_url + "/artifact/jars/" + item["fileName"]
+                )
+                filename_list.append(item["fileName"])
+
+    # Download from Github
     for item in github_repo:
         github_api_url = "https://api.github.com/repos/%s/releases/latest" % item
         response = requests.get(github_api_url, headers=headers)
