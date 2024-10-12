@@ -1,18 +1,12 @@
 {
-    "essentials": "https://ci-api.essentialsx.net/job/EssentialsX/lastSuccessfulBuild/api/json",
-    "github_base_url": "https://api.github.com/repos/%s/releases/latest",
-    "bukkit_base_url": "https://dev.bukkit.org/projects/%s/files/latest",
+    "essentials_base_url": "https://ci-api.essentialsx.net/job/EssentialsX/lastSuccessfulBuild/api/json",
     "spigot_base_url": "https://api.spiget.org/v2/resources/%s/download",
+    "bukkit_base_url": "https://dev.bukkit.org/projects/%s/files/latest",
+    "github_base_url": "https://api.github.com/repos/%s/releases/latest",
     "spigot": {
-        "BlockLocker": "3268",
-        "luckperms": "28140",
-        "Magic": "1056",
-        "placeholderapi": "6245",
-        "plugmanx": "88135",
-        "protocollib": "1997",
-        "quickshop-hikari": "100125",
-        "vault": "34315"
+        "GSit": "62325"
     },
     "bukkit": ["worldedit", "worldguard", "coreprotect"],
-    "github": ["gecolay/GSit"]
+    "github": ["gecolay/GSit"],
+    "essentials": ["EssentialsX-", "EssentialsXChat-", "EssentialsXSpawn-"]
 }
