@@ -1,9 +1,7 @@
 {
     "essentials": "https://ci-api.essentialsx.net/job/EssentialsX/lastSuccessfulBuild/api/json",
     "github_base_url": "https://api.github.com/repos/%s/releases/latest",
-    "github": ["gecolay/GSit"],
     "bukkit_base_url": "https://dev.bukkit.org/projects/%s/files/latest",
-    "bukkit": ["worldedit", "worldguard", "coreprotect"],
     "spigot_base_url": "https://api.spiget.org/v2/resources/%s/download",
     "spigot": {
         "BlockLocker": "3268",
@@ -14,5 +12,7 @@
         "protocollib": "1997",
         "quickshop-hikari": "100125",
         "vault": "34315"
-    }
+    },
+    "bukkit": ["worldedit", "worldguard", "coreprotect"],
+    "github": ["gecolay/GSit"]
 }
