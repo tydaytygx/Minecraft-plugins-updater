@@ -36,6 +36,11 @@ if os.path.exists("config.json"):
 else:
     with open("config.json", "a"):
         pass
+    
+if os.path.exists("plugins"):
+    pass
+else:
+    os.mkdir('plugins')
 
 
 def download_file(url, custom_filename=None):
@@ -50,7 +55,7 @@ def download_file(url, custom_filename=None):
     r = requests.get(url, headers=headers, allow_redirects=True, stream=True)
 
     if r.status_code == 200:
-        with open(filename, "wb") as f:
+        with open(r"plugins/" + filename, "wb") as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
                     f.write(chunk)
