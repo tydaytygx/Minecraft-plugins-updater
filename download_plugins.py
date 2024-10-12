@@ -89,7 +89,7 @@ if __name__ == "__main__":
     response = requests.get(EssentialsX_plugins["EssentialsX"], headers=headers)
     EssentialsX_plugins_url = json.loads(response.text)["url"]
     soup = BeautifulSoup(response.content, "html.parser")
-    print(json.loads(response.text)["artifacts"])
+    # print(json.loads(response.text)["artifacts"])
     for item in json.loads(response.text)["artifacts"]:
         for index in essentialsx_repo:
             if index in item["fileName"]:
@@ -114,7 +114,11 @@ if __name__ == "__main__":
 
     # Download from Bukkit
     for item in bukkit_repo:
-        bukkit_download_url = bukkit_base_url + item
+        session = requests.session()
+        session.headers.update(headers)
+        bukkit_download_url = bukkit_base_url % item
+        bukkit_session = session.get(bukkit_download_url, allow_redirects=True)
+
         filename = item + ".jar"
         download_url_list.append(bukkit_download_url)
         filename_list.append(filename)
