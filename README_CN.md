@@ -51,7 +51,7 @@ s
 
 ## 可选项
 
-1. **多进程**
+1. **单进程**
 
 ```bash
 python3 download_plugins.py
