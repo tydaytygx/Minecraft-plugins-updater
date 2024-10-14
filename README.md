@@ -44,7 +44,7 @@ Just fill in the organization (author)/warehouse name, for example gecolay/GSit
 
 ## Optional
 
-1. **Multi-process**
+1. **Single-process**
 
 ```bash
 python3 download_plugins.py
